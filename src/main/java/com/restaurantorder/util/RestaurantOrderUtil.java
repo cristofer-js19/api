@@ -1,4 +1,4 @@
-package com.restaurantorder.com.restaurantorder.util;
+package com.restaurantorder.util;
 
 import com.restaurantorder.model.RestaurantOrderModel;
 

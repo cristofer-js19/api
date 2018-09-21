@@ -1,6 +1,6 @@
 package com.restaurantorder.service;
 
-import com.restaurantorder.com.restaurantorder.util.RestaurantOrderUtil;
+import com.restaurantorder.util.RestaurantOrderUtil;
 import com.restaurantorder.model.RestaurantOrderModel;
 import org.apache.commons.lang.StringUtils;
 
