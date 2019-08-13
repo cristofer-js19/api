@@ -1,32 +1,38 @@
 package com.restaurantorder.model;
 
-public class RestaurantOrderModel {
+import lombok.Builder;
+import lombok.Getter;
+
+import java.util.Objects;
+
+/**
+ * class RestaurantOrderModel
+ * Model used in the operations
+ */
+@Builder
+@Getter
+public class RestaurantOrderModel implements Comparable<RestaurantOrderModel>{
 
     private String timeOfDay;
     private int dishType;
     private String dishName;
     private boolean canBeRepeated;
 
-    public RestaurantOrderModel(String timeOfDay, int dishType, String dishName, boolean canBeRepeated) {
-        this.timeOfDay = timeOfDay;
-        this.dishType = dishType;
-        this.dishName = dishName;
-        this.canBeRepeated = canBeRepeated;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RestaurantOrderModel that = (RestaurantOrderModel) o;
+        return Objects.equals(dishName, that.dishName);
     }
 
-    public String getTimeOfDay() {
-        return timeOfDay;
+    @Override
+    public int hashCode() {
+        return Objects.hash(dishName);
     }
 
-    public int getDishType() {
-        return dishType;
-    }
-
-    public String getDishName() {
-        return dishName;
-    }
-
-    public boolean getCanBeRepeated() {
-        return canBeRepeated;
+    @Override
+    public int compareTo(RestaurantOrderModel o) {
+        return (int) (this.dishType - o.getDishType());
     }
 }
