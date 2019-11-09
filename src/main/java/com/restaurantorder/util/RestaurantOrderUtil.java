@@ -12,21 +12,18 @@ import java.util.List;
 public class RestaurantOrderUtil {
 
     /**
-     * method allDishes()
-     * @return list containing all possible dishes
+     * allDishes
+     * List containing all possible dishes
      */
-    private static List<RestaurantOrderModel> allDishes() {
-        List<RestaurantOrderModel> list = new ArrayList<>();
-        list.add(RestaurantOrderModel.builder().timeOfDay("morning").dishType(1).dishName("eggs").canBeRepeated(false).build());
-        list.add(RestaurantOrderModel.builder().timeOfDay("morning").dishType(2).dishName("toast").canBeRepeated(false).build());
-        list.add(RestaurantOrderModel.builder().timeOfDay("morning").dishType(3).dishName("coffee").canBeRepeated(true).build());
-        list.add(RestaurantOrderModel.builder().timeOfDay("night").dishType(1).dishName("steak").canBeRepeated(false).build());
-        list.add(RestaurantOrderModel.builder().timeOfDay("night").dishType(2).dishName("potato").canBeRepeated(true).build());
-        list.add(RestaurantOrderModel.builder().timeOfDay("night").dishType(3).dishName("wine").canBeRepeated(false).build());
-        list.add(RestaurantOrderModel.builder().timeOfDay("night").dishType(4).dishName("cake").canBeRepeated(false).build());
-
-        return list;
-    }
+    private static List<RestaurantOrderModel> allDishes = new ArrayList<RestaurantOrderModel>() {{
+        add(RestaurantOrderModel.builder().timeOfDay("morning").dishType(1).dishName("eggs").canBeRepeated(false).build());
+        add(RestaurantOrderModel.builder().timeOfDay("morning").dishType(2).dishName("toast").canBeRepeated(false).build());
+        add(RestaurantOrderModel.builder().timeOfDay("morning").dishType(3).dishName("coffee").canBeRepeated(true).build());
+        add(RestaurantOrderModel.builder().timeOfDay("night").dishType(1).dishName("steak").canBeRepeated(false).build());
+        add(RestaurantOrderModel.builder().timeOfDay("night").dishType(2).dishName("potato").canBeRepeated(true).build());
+        add(RestaurantOrderModel.builder().timeOfDay("night").dishType(3).dishName("wine").canBeRepeated(false).build());
+        add(RestaurantOrderModel.builder().timeOfDay("night").dishType(4).dishName("cake").canBeRepeated(false).build());
+    }};
 
     /**
      * method getDishNameByTimeOfDayAndType()
@@ -35,7 +32,7 @@ public class RestaurantOrderUtil {
      * @return dish that corresponds to the given timeOfDay and index
      */
     public static RestaurantOrderModel getDishNameByTimeOfDayAndType(String timeOfDay, int indexRequested) {
-        return allDishes()
+        return allDishes
                 .stream()
                 .filter(m -> m.getTimeOfDay().equals(timeOfDay) && m.getDishType() == indexRequested)
                 .findFirst()
@@ -48,7 +45,7 @@ public class RestaurantOrderUtil {
      * @return the max type between the dishes
      */
     private static int getMaxDishType(String timeOfDay) {
-        return allDishes()
+        return allDishes
                 .stream()
                 .filter(m -> m.getTimeOfDay().equals(timeOfDay))
                 .mapToInt(RestaurantOrderModel::getDishType)
